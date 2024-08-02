@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .form {
+            display: none;
+        }
+        .form.active {
+            display: block;
+        }
+        .form h2 {
+            margin-bottom: 20px;
+        }
+        .form input[type="text"],
+        .form input[type="email"],
+        .form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-button {
+            margin: 10px 0;
+            cursor: pointer;
+            color: #007bff;
+            text-align: center;
+        }
+        .toggle-button:hover {
+            text-decoration: underline;
+        }
+        .message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="auth-form" class="form active">
+            <h2>Авторизация</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required><br>
+                <input type="password" id="login-password" placeholder="Пароль" required><br>
+                <label><input type="checkbox" id="login-remember"> Запомнить меня</label><br>
+                <button type="submit">Войти</button>
+            </form>
+            <div class="toggle-button" onclick="showForm('register')">Зарегистрироваться</div>
+            <div class="toggle-button" onclick="showForm('reset')">Восстановить пароль</div>
+        </div>
+
+        <div id="register-form" class="form">
+            <h2>Регистрация</h2>
+            <form id="signup-form">
+                <input type="text" id="signup-name" placeholder="Имя" required><br>
+                <input type="email" id="signup-email" placeholder="Email" required><br>
+                <input type="password" id="signup-password" placeholder="Пароль" required><br>
+                <input type="password" id="signup-confirm-password" placeholder="Подтверждение пароля" required><br>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+            <div class="toggle-button" onclick="showForm('auth')">Войти</div>
+            <div class="toggle-button" onclick="showForm('reset')">Восстановить пароль</div>
+        </div>
+
+        <div id="reset-form" class="form">
+            <h2>Восстановление доступа</h2>
+            <form id="reset-password-form">
+                <input type="email" id="reset-email" placeholder="Email" required><br>
+                <button type="submit">Восстановить</button>
+            </form>
+            <div class="toggle-button" onclick="showForm('auth')">Войти</div>
+            <div class="toggle-button" onclick="showForm('register')">Зарегистрироваться</div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
