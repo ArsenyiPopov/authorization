@@ -4,14 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('reset-password-form').addEventListener('submit', handlePasswordReset);
 });
 
+// Функция для переключения видимых форм
 const showForm = (form) => {
     document.querySelectorAll('.form').forEach(formElement => {
         formElement.classList.remove('active');
     });
     document.getElementById(`${form}-form`).classList.add('active');
     clearMessage();
+    console.log(`${form}`);
 };
 
+// Функция для отображения сообщений
 const showMessage = (message, type) => {
     const messageDiv = document.getElementById('message');
     messageDiv.textContent = message;
@@ -19,22 +22,23 @@ const showMessage = (message, type) => {
     messageDiv.style.display = 'block';
 };
 
+// Функция для очистки сообщений
 const clearMessage = () => {
     const messageDiv = document.getElementById('message');
     messageDiv.textContent = '';
     messageDiv.className = 'message';
     messageDiv.style.display = 'none';
 };
-
+// Функция для валидации email
 const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 };
-
+// Функция для валидации пароля
 const validatePassword = (password) => {
     return password.length > 3;
 };
-
+// Функция для валидации имени (разрешены только русские буквы и пробелы)
 const validateName = (name) => {
     const re = /^[А-Яа-яЁё\s]+$/;
     return re.test(name);
